@@ -4,3 +4,4 @@ numpy
 yfinance
 plotly.express
 alpha_vantage
+stocknews
