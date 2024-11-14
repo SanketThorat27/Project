@@ -6,7 +6,11 @@ start_date = st.sidebar.date_input('Start Date')
 end_date = st.sidebar.date_input('End Date')
 
 data = yf.download(ticker, start=start_date, end=end_date)
-fig=px.line(data, x = data.index, y = data['Adj Close'], title = ticker)
+# fig=px.line(data, x = data.index, y = data['Adj Close'], title = ticker)
+
+# Fixing by ensuring 'data["Adj Close"]' is a Series (1D) instead of a DataFrame (2D) // new line added 
+fig = px.line(data, x=data.index, y=data['Adj Close'].squeeze(), title=ticker)
+
 st.plotly_chart (fig)
 
 pricing_data, fundamental_data, news = st.tabs(["Pricing Data", "Fundamental Data", "Top 10 News"])
